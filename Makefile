@@ -32,7 +32,7 @@ SOURCES		:=	source
 DATA		:=	data
 INCLUDES	:=	include
 
-VERSION	:=	v1.2
+VERSION	:=	v1.1
 
 APP_TITLE	:=	Gateway CIA $(VERSION)
 APP_DESCRIPTION	:=	This is a shortcut to launch Gateway
