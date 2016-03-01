@@ -143,7 +143,6 @@ Result load_gateway()
 
 	memset(filebuffer, 0, filebuffer_maxsize);
 
-	printf("Loading payload on SD, with the following filepath: \n", payload_sdpath);
 	ret = loadsd_payload(payload_sdpath, &payloadsize);
 
 	if(ret==0)
@@ -154,8 +153,6 @@ Result load_gateway()
 	{
 		printf("Can't find \n");
 	}
-
-	printf("Initializing payload data etc...\n");
 
 	payloadsize_aligned = (payloadsize + 0xfff) & ~0xfff;
 	if(payloadsize_aligned > PAYLOAD_TEXTMAXSIZE)
@@ -190,8 +187,6 @@ Result load_gateway()
 		paramblk[0x48>>2] = 0x8d;//flags
 		paramblk[0x58>>2] = (u32)&gspGpuHandle;
 
-	printf("Jumping into the payload...\n");
-
 	funcptr = (void*)PAYLOAD_TEXTADDR;
 	funcptr(paramblk, (u32*)(0x10000000-0x1000));
 
@@ -212,7 +207,7 @@ int main(int argc, char **argv)
 
 	consoleInit(GFX_BOTTOM, NULL);
 
-	printf("Gateway Cia\n", VERSION);
+	printf("Gateway Cia Is Loading\n", VERSION);
 
 	ret = svcDuplicateHandle(&kproc_handledup, 0xffff8001);
 	if(ret!=0)printf("svcDuplicateHandle() with the current proc-handle failed: 0x%08x.\n", (unsigned int)ret);
