@@ -32,11 +32,11 @@ SOURCES		:=	source
 DATA		:=	data
 INCLUDES	:=	include
 
-VERSION	:=	v1.1
+VERSION	:=	v1.2
 
-APP_TITLE	:=	hblauncher_loader $(VERSION)
-APP_DESCRIPTION	:=	This boots the hblauncher-payload.
-APP_AUTHOR	:=	yellows8
+APP_TITLE	:=	Gateway CIA $(VERSION)
+APP_DESCRIPTION	:=	This is a shortcut to launch Gateway
+APP_AUTHOR	:=	Gateway
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -135,7 +135,7 @@ $(BUILD):
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ...
-	@rm -fr $(BUILD) $(TARGET).3dsx $(OUTPUT).smdh $(TARGET).elf $(OUTPUT).cia Resources/hblauncher_loader.icn Resources/hblauncher_loader.bnr
+	@rm -fr $(BUILD) $(TARGET).3dsx $(OUTPUT).smdh $(TARGET).elf $(OUTPUT).cia Resources/Gateway_cia.icn Resources/Gateway_cia.bnr
 
 
 #---------------------------------------------------------------------------------
@@ -154,15 +154,15 @@ endif
 
 $(OUTPUT).elf	:	$(OFILES)
 
-../Resources/hblauncher_loader.icn	:	$(APP_ICON)
-	@bannertool makesmdh -i "$(APP_ICON)" -o "$@" -s "$(APP_TITLE)" -l "$(APP_TITLE)" -p "$(APP_AUTHOR)"
+../Resources/Gateway_cia.icn	:	$(APP_ICON)
+	../bannertool makesmdh -i "$(APP_ICON)" -o "$@" -s "$(APP_TITLE)" -l "$(APP_TITLE)" -p "$(APP_AUTHOR)"
 
-../Resources/hblauncher_loader.bnr	:	../banner.png
-	@bannertool makebanner -i "$<" -ca ../Resources/hblauncher_loader.cwav -o "$@"
+../Resources/Gateway_cia.bnr	:
+	../bannertool makebanner -i "$<" -ca ../Resources/Gateway_cia.cwav -o "$@" -ci ../Resources/Gateway_cia.cgfx -o "$@"
 
-$(OUTPUT).cia	:	$(OUTPUT).elf ../Resources/hblauncher_loader.icn ../Resources/hblauncher_loader.bnr
-	@makerom -f cia -o "$@" -elf $(OUTPUT).elf -rsf ../Resources/hblauncher_loader.rsf -icon ../Resources/hblauncher_loader.icn -banner ../Resources/hblauncher_loader.bnr -exefslogo -ver 1040
-	@echo "built ... hblauncher_loader.cia"
+$(OUTPUT).cia	:	$(OUTPUT).elf ../Resources/Gateway_cia.icn ../Resources/Gateway_cia.bnr
+	../makerom -f cia -o "$@" -elf $(OUTPUT).elf -rsf ../Resources/Gateway_cia.rsf -icon ../Resources/Gateway_cia.icn -banner ../Resources/Gateway_cia.bnr -exefslogo -ver 1040
+	@echo "built ... Gateway_cia.cia"
 
 #---------------------------------------------------------------------------------
 # you need a rule like this for each extension you use as binary data

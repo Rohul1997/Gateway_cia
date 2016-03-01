@@ -1,5 +1,5 @@
 BasicInfo:
-  Title                   : Gateway Launcher
+  Title                   : Gateway CIA
   ProductCode             : 3DS Chaos
   Logo                    : Homebrew
 
@@ -9,7 +9,7 @@ RomFs:
 
 TitleInfo:
   Category                : Application
-  UniqueId                : 0xd921e
+  UniqueId                : 0xd921d
 
 Option:
   UseOnSD                 : true # true if App is to be installed to SD
