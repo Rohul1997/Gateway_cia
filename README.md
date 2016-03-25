@@ -14,5 +14,5 @@ This is just a CIA shortcut that opens Gateway Launcher.
 - You may delete Gateway_cia.cia from your SD card if you wish.
 
 ## NOTES
-- You must launch Gateway from sysnand, using the native_firm from 9.0~9.2. This is a limitation of Gateway, not this tool.
+- You must launch Gateway using the native_firm from 9.0~9.2. This is a limitation of Gateway, not this tool.
 - To do this using AuReiNand, hold **L** when powering on with the proper firmware90.bin in your **aurei** folder.
