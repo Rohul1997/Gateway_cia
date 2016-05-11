@@ -147,21 +147,19 @@ DEPENDS	:=	$(OFILES:.o=.d)
 # main targets
 #---------------------------------------------------------------------------------
 ifeq ($(strip $(NO_SMDH)),)
-$(OUTPUT).3dsx	:	$(OUTPUT).elf $(OUTPUT).smdh $(OUTPUT).cia
-else
-$(OUTPUT).3dsx	:	$(OUTPUT).elf
+$(OUTPUT).cia	:
 endif
 
 $(OUTPUT).elf	:	$(OFILES)
 
 ../Resources/Gateway_cia.icn	:	$(APP_ICON)
-	../bannertool makesmdh -i "$(APP_ICON)" -o "$@" -s "$(APP_TITLE)" -l "$(APP_TITLE)" -p "$(APP_AUTHOR)"
+	@bannertool makesmdh -i "$(APP_ICON)" -o "$@" -s "$(APP_TITLE)" -l "$(APP_TITLE)" -p "$(APP_AUTHOR)"
 
 ../Resources/Gateway_cia.bnr	:
-	../bannertool makebanner -i "$<" -ca ../Resources/Gateway_cia.cwav -o "$@" -ci ../Resources/Gateway_cia.cgfx -o "$@"
+	@bannertool makebanner -i "$<" -ca ../Resources/Gateway_cia.cwav -o "$@" -ci ../Resources/Gateway_cia.cgfx -o "$@"
 
 $(OUTPUT).cia	:	$(OUTPUT).elf ../Resources/Gateway_cia.icn ../Resources/Gateway_cia.bnr
-	../makerom -f cia -o "$@" -elf $(OUTPUT).elf -rsf ../Resources/Gateway_cia.rsf -icon ../Resources/Gateway_cia.icn -banner ../Resources/Gateway_cia.bnr -exefslogo -ver 1040
+	@makerom -f cia -o "$@" -elf $(OUTPUT).elf -rsf ../Resources/Gateway_cia.rsf -icon ../Resources/Gateway_cia.icn -banner ../Resources/Gateway_cia.bnr -exefslogo -ver 1040
 	@echo "built ... Gateway_cia.cia"
 
 #---------------------------------------------------------------------------------
